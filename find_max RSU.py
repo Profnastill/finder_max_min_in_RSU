@@ -28,7 +28,7 @@ if __name__ == '__main__':
         usilia.rename(columns={i:i.split(",")[0]},inplace=True)
 
     usilia.reset_index(inplace=True)
-    usilia.drop(columns=["ЭЛЕМ",'НС',"КРТ","СТ","КС","Г"],inplace=True)
+    usilia.drop(columns=['MK','НС',"КРТ","СТ","КС","Г"],inplace=True)
     #new_usilia=usilia.loc[usilia.agg(['N', 'MK']).stack()].drop_duplicates()
     print(usilia)
     usilia["MY"]=usilia["MY"].abs()
@@ -39,6 +39,7 @@ if __name__ == '__main__':
     new_usilia=usilia.query("N == N.max()|N == N.min()|MY == MY.max()|MZ == MZ.max()")
     print(new_usilia)
     xlsheet = sheet
+
     xlsheet.range("R1").options(index=False).value = new_usilia
 
 
